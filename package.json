@@ -1,0 +1,13 @@
+{
+  "name": "Syncronized editor",
+  "version": "0.0.1",
+  "description": "Synchronized editor by node.js",
+  "author": {
+    "name": "Maxim Coder",
+    "email": "testigotarantigo@gmail.com"
+  },
+  "dependencies": {
+    "express": "^4.10.2",
+    "socket.io": "^1.3.6"
+  }
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <title>Synchronized editor</title>
+    <style>
+        textarea#text {
+            width: 600px;
+            height: 120px;
+            border: 3px solid #cccccc;
+            padding: 5px;
+            font-family: Tahoma, sans-serif;
+
+        }
+    </style>
+</head>
+<body>
+<h1>Synchronized editor</h1>
+<div>
+    <textarea id="text"></textarea>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    var socket = io();
+    function setbg(color){
+        $('#text').css('backgroundcolor', color);
+    }
+
+    $('document').ready(function(){
+        socket.on('textchanged', function(msg){
+            $('#text').val(msg);
+        });
+        $('#text').on('change', function(){
+            socket.emit('textchanged', $('#text').val());
+            console.log($('#text').val());
+        });
+        $('#text').on('focus', setbg('#e5fff3')).on('blur', setbg('white'));
+    })
+</script>
+</body>
+</html>
